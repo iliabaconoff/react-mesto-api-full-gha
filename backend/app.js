@@ -10,8 +10,7 @@ const authMiddleware = require('./middlewares/auth');
 const responseHandler = require('./middlewares/responseHandler');
 const { validateLogin, validateRegistration } = require('./utils/validationConfig');
 const NotFound = require('./utils/responsesWithError/NotFound');
-const {requestLogger, errorLogger} = require("./middlewares/logger");
-const router = require("./routes");
+const {errorLogger, requestLogger} = require("./middlewares/logger");
 
 mongoose.set('strictQuery', false);
 mongoose.connect(MONGO_DB, {
@@ -22,11 +21,10 @@ mongoose.connect(MONGO_DB, {
 
 app.use(express.json());
 
-app.use(cors());
-
 app.use(helmet());
 
 app.use(requestLogger);
+
 app.use('/users', authMiddleware, require('./routes/user'));
 app.use('/cards', authMiddleware, require('./routes/card'));
 
@@ -38,8 +36,6 @@ app.use('*', (req, res, next) => {
 });
 
 app.use(errorLogger);
-
-app.use(router);
 
 app.use(errors());
 app.use(responseHandler);

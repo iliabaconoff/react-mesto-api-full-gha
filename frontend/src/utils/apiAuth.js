@@ -1,12 +1,10 @@
-const BASE_URL = "https://api.baconoff.nomoredomains.work";
+const { BASE_URL } = require('api')
 
 const checkResponse = (res) => {
   if (res.ok) {
     return res.json();
   }
-  return res.text().then((text) => {
-    throw JSON.parse(text).message || JSON.parse(text).error;
-  });
+  return Promise.reject(`Ошибка: ${res.status}`);
 };
 
 export const register = ({ email, password }) => {

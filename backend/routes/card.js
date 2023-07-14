@@ -1,6 +1,6 @@
 const cardRouter = require('express').Router();
 const {
-  createCard,
+  createNewCard,
   deleteCard,
   dislikeCard,
   likeCard,
@@ -11,7 +11,7 @@ const {
   validateNewCard,
 } = require('../utils/validationConfig');
 
-cardRouter.post('/', validateNewCard, createCard);
+cardRouter.post('/', validateNewCard, createNewCard);
 cardRouter.get('/', getAllCards);
 cardRouter.delete('/:cardId', validateCardId, deleteCard);
 cardRouter.put('/:cardId/likes', validateCardId, likeCard);

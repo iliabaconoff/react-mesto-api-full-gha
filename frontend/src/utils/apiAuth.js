@@ -1,10 +1,12 @@
-const BASE_URL = "https://auth.nomoreparties.co";
+const BASE_URL = "https://api.baconoff.nomoredomains.work";
 
 const checkResponse = (res) => {
   if (res.ok) {
     return res.json();
   }
-  return Promise.reject(`Ошибка: ${res.status}`);
+  return res.text().then((text) => {
+    throw JSON.parse(text).message || JSON.parse(text).error;
+  });
 };
 
 export const register = ({ email, password }) => {

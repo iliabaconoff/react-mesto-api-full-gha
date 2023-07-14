@@ -11,6 +11,7 @@ const responseHandler = require('./middlewares/responseHandler');
 const { validateLogin, validateRegistration } = require('./utils/validationConfig');
 const NotFound = require('./utils/responsesWithError/NotFound');
 const {errorLogger, requestLogger} = require("./middlewares/logger");
+const cors = require("./middlewares/cors");
 
 mongoose.set('strictQuery', false);
 mongoose.connect(MONGO_DB, {
@@ -20,6 +21,8 @@ mongoose.connect(MONGO_DB, {
 });
 
 app.use(express.json());
+
+app.use(cors);
 
 app.use(helmet());
 

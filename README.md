@@ -6,7 +6,7 @@ react-mesto-api-full
 Адрес репозитория: https://github.com/iliabaconoff/react-mesto-api-full-gha
 
 Ссылки на проект
-IP-адрес x.x.x.x
+IP-адрес https://158.160.14.20
 
 Frontend https://baconoff.nomoredomains.work
 

@@ -1,0 +1,13 @@
+.cards {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 17px;
+  margin-top: 50px;
+}
+
+@media screen and (max-width:880px) {
+  .cards{
+    margin: auto;
+  }
+}

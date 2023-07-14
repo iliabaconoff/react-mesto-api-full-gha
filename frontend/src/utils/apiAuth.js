@@ -1,4 +1,4 @@
-const { BASE_URL } = require('./api')
+const BASE_URL = 'https://api.baconoff.nomoredomains.work'
 
 const checkResponse = (res) => {
   if (res.ok) {

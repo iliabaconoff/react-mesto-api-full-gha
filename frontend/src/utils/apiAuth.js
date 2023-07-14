@@ -8,7 +8,7 @@ const checkResponse = (res) => {
 };
 
 export const register = ({ email, password }) => {
-  return fetch(BASE_URL + "/signup", {
+  return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
       "Accept": "application/json",

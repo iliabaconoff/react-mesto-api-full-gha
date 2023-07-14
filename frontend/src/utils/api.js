@@ -122,4 +122,4 @@ const api = new Api({
   baseUrl: 'https://api.baconoff.nomoredomains.work'
 })
 
-export default api
+export default api;

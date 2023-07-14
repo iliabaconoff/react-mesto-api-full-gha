@@ -1,4 +1,4 @@
-const { BASE_URL } = require('api')
+const { BASE_URL } = require('./api')
 
 const checkResponse = (res) => {
   if (res.ok) {

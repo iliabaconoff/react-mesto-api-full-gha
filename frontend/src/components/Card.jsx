@@ -4,9 +4,9 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 const Card = (props) => {
 
   const currentUser = useContext(CurrentUserContext);
-  const isOwn = props.cardData.owner._id === currentUser._id;
-  const isLiked = props.likes.some((user) => user._id === currentUser._id);
-  const cardLikeButtonClassName = (`card__like ${isLiked && 'card__like_pressed'}`);; 
+  const isOwn = props.cardData.owner === currentUser._id;
+  const isLiked = props.likes.some((user) => user === currentUser._id);
+  const cardLikeButtonClassName = (`card__like ${isLiked && 'card__like_pressed'}`);;
 
   function handleClick() {
     props.onCardClick(props.cardData)
@@ -28,7 +28,7 @@ const Card = (props) => {
         alt={props.name}
         onClick={handleClick}
       />
-      {isOwn && 
+      {isOwn &&
       <button
         className="card__delete"
         type="button"

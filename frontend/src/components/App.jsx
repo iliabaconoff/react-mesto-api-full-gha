@@ -24,7 +24,7 @@ function App() {
   const [isInfoToolTipOpen, setIsInfoToolTipOpen] = useState(false)
   const [isError, setError] = useState(false)
   const [isLoggedIn, setLoggedIn] = useState(false)
-  const [selecetedCard, setSelecetCard] = useState({})
+  const [selectedCard, setSelectedCard] = useState({})
   const [cards, setCards] = useState([])
   const [email, setEmail] = useState('')
 
@@ -54,7 +54,7 @@ function App() {
   }, [isLoggedIn])
 
   function handleCardClick(card) {
-    setSelecetCard(card)
+    setSelectedCard(card)
     setIsImagePopupOpen(true)
   }
 
@@ -67,13 +67,13 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((user) => user._id === currentUser._id)
+    const isLiked = card.likes.some((user) => user === currentUser._id)
 
     api
       .changeLikeCardStatus(card._id, isLiked)
       .then((newCard) =>
         setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c)),
+          state.map((c) => (c._id === card._id ? newCard.data : c)),
         ),
       )
       .catch((err) => console.log(err))
@@ -81,7 +81,7 @@ function App() {
 
   function handleDeleteClick(card) {
     api
-      .deleteCard(card._id)
+      .deleteCard(card)
       .then(() => setCards((state) => state.filter((c) => c._id !== card._id)))
       .catch((err) => console.log(err))
   }
@@ -90,7 +90,7 @@ function App() {
     api
       .setUserInfo({ name, about })
       .then((user) => {
-        setCurrentUser(user)
+        setCurrentUser(user.data)
         closeAllPopups()
       })
       .catch((err) => console.log(err))
@@ -100,7 +100,7 @@ function App() {
     api
       .setUserAvatar({ avatar })
       .then((user) => {
-        setCurrentUser(user)
+        setCurrentUser(user.data)
         closeAllPopups()
       })
       .catch((err) => console.log(err))
@@ -110,7 +110,7 @@ function App() {
     api
       .addNewCard({ name, link })
       .then((newCard) => {
-        setCards([newCard, ...cards])
+        setCards([newCard.data, ...cards])
         closeAllPopups()
       })
       .catch((err) => console.log(err))
@@ -234,7 +234,7 @@ function App() {
 
       {/* fullsize image popup */}
       <ImagePopup
-        card={selecetedCard}
+        card={selectedCard}
         isOpen={isImagePopupOpen}
         onClose={closeAllPopups}
       />

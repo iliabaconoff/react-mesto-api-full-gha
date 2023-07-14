@@ -39,9 +39,9 @@ const Main = (props) => {
         ></button>
       </section>
       <section className="cards">
-        {props.cards.reverse().map((card) => {
+        {props.cards.map((card) => {
           return(
-          <Card 
+          <Card
           key={card._id}
           cardData={card}
           name={card.name}

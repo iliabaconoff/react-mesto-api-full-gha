@@ -1,7 +1,7 @@
 import React, { useContext} from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-const Card = ( cardData, likes, name, link, onCardClick, onCardLike, onCardDelete ) => {
+const Card = ({ cardData, likes, name, link, onCardClick, onCardLike, onCardDelete }) => {
 
   const currentUser = useContext(CurrentUserContext);
   const isOwn = cardData.owner === currentUser._id;

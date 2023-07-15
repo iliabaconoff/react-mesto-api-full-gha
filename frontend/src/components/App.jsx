@@ -81,10 +81,11 @@ function App() {
 
   function handleDeleteClick(card) {
     api
-      .deleteCard(card)
+      .deleteCard(card._id)
       .then(() => setCards((state) => state.filter((c) => c._id !== card._id)))
       .catch((err) => console.log(err))
   }
+
 
   function handleUpdateUser({ name, about }) {
     api

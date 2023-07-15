@@ -81,7 +81,7 @@ function App() {
 
   function handleDeleteClick(card) {
     api
-      .deleteCard(card)
+      .deleteCardLike(card)
       .then(() => setCards((state) => state.filter((c) => c._id !== card._id)))
       .catch((err) => console.log(err))
   }
@@ -168,7 +168,8 @@ function App() {
           }
         })
         .catch((err) => {
-          console.log(err)
+          console.log(err);
+          localStorage.clear();
         })
     }
   }
